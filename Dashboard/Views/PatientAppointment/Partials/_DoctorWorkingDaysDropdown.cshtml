@@ -1,0 +1,22 @@
+﻿@using Domain.DTO
+@model List<DoctorWorkingDayDTO>
+
+                <div class="form-group">
+                    <label class="control-label">Doctor Working Day</label>
+                    <select id="WorkingDayId" class="col-sm-12 form-control MainObj" tabindex="-1" aria-hidden="true" required>
+                        <option value="">Working day</option>
+                        @foreach (var item in Model)
+                        {
+                            
+                                <option value="@item.WorkingDay.Id">@item.WorkingDay.Name</option>
+                            
+                        }
+                    </select>
+
+                    <input type="text" hidden value="@ViewBag.Doctor.StartDate" id="DoctorWorkingStartDate" />
+                    <input type="text" hidden value="@ViewBag.Doctor.EndDate" id="DoctorWorkingEndDate" />
+                </div>
+                
+            
+            
+

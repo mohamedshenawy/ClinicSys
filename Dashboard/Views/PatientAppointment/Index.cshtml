@@ -1,0 +1,83 @@
+﻿
+@{
+    ViewData["Title"] = "PatientAppointment";
+}
+
+<div class="card mt-3">
+    <div class="card-header">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label font-weight-bold">Search</label>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Patient Name</label>
+                    <input id="PatientName" class="form-control searchcriteria" type="text" />
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Doctor Name</label>
+                    <input id="DoctorName" class="form-control searchcriteria" type="text" />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Working date</label>
+                    <input type="text" class="form-control" onchange="setStartDateAndEndDate(this)" id="DateRange" name="daterange" value="" /> <span class="btn btn-link" id="clear-daterange">clear</span>
+                    <input type="text" id="StartDate" hidden class="searchcriteria" />
+                    <input type="text" id="EndDate" hidden class="searchcriteria" />
+                </div>
+            </div>
+            
+
+        </div>
+        <div class="card-block">
+            <a class="btn btn-success right" id="Search" onclick="filter()" style="float: right;">Search</a>
+        </div>
+    </div>
+</div>
+
+<!-- Start Table -->
+<div class="card mt-5">
+    <div class="card-header">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    <label class="control-label font-weight-bold">Patient Appointment</label>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <table id="myTable" class="display table" style="width:100%">
+                    <thead>
+                        <tr class="members-tr-responsive">
+                            <th>#</th>
+                            <th class="text-center">patinet name</th>
+                            <th class="text-center">doctor name</th>
+                            <th class="text-center">Working Day</th>
+                            <th class="text-center">Date</th>
+                            <th class="text-center">appointment start date</th>
+                            <th class="text-center">appointment end date</th>
+                            <th class="text-center">CreationDate</th>
+                            <th class="text-center">UpdatedDate</th>
+                            <th class="text-center"></th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- End Table -->
+@section scripts {
+    <script src="~/js/PatientAppointment.js" asp-append-version="true"></script> 
+}
+

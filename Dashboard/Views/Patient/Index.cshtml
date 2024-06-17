@@ -1,0 +1,90 @@
+﻿@using Domain.DTO
+@model List<PatientDTO>
+@{
+    ViewData["Title"] = "Clinic";
+}
+
+
+<nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Patient</li>
+    </ol>
+</nav>
+
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#exampleModalLong" onclick="removeDataFromModal()">
+    Add new patient
+</button>
+
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Birth date</th>
+            <th scope="col">Creation date</th>
+            <th scope="col">Updated date</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="Id">@item.Id</td>
+                <td class="Name">@item.Name</td>
+                <td class="BirthDate">@item.BirthDate.ToString("g")</td>
+                <td>@item.CreationDate.ToString("g")</td>
+                <td>@item.UpdatedDate?.ToString("g")</td>
+                <td>
+                    <button type="button" class="btn btn-outline-info" onclick="editItem(this)" data-toggle="modal" title="edit" data-target="#exampleModalLong">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </button>
+                    <button type="button" class="btn btn-outline-danger" onclick="deleteItem(@item.Id)" title="delete">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+
+<!-- Modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input type="text" id="Id" hidden class="MainObj" />
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Name</label>
+                    <input type="email" class="form-control MainObj" id="Name" aria-describedby="emailHelp" placeholder="Name">
+                </div>
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Birth date</label>
+                    <input type="date" class="form-control MainObj" id="BirthDate" placeholder="Birth date">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="Save()">Save </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script src="~/js/patient.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,113 @@
+﻿@using Domain.ViewModels
+@model PatientAppointmentViewModel
+
+<div class="card">
+    <div class="card-header ">
+        <div class="row">
+            <input type="text" id="Id" hidden class="MainObj" value="@Model?.PatientAppointment?.Id" />
+            <div class="col-md-6" id="PatientDiv">
+                    <div class="form-group">
+                        <label class="control-label">Patient</label>
+                        <select data-searchcriteria='true' id="PatientId" class="col-sm-12 form-control MainObj" tabindex="-1" aria-hidden="true" required>
+                            <option value="0">Patient</option>
+                            @foreach (var item in Model.Patients)
+                            {
+                                if (Model?.PatientAppointment?.PatientId == item.Id)
+                                {
+                                    <option selected value="@item.Id">@item.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.Id">@item.Name</option>
+                                }
+                            }
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                <div class="form-group">
+                    <label class="control-label">Doctor</label>
+                    <select id="DoctorId" class="col-sm-12 form-control MainObj" tabindex="-1" aria-hidden="true" required>
+                        <option value="">Doctor</option>
+                        @foreach (var item in Model.Doctors)
+                        {
+                            if (Model?.PatientAppointment?.DoctorId == item.Id)
+                            {
+                                <option selected value="@item.Id">@item.Name</option>
+                            }
+                            else
+                            {
+                                <option value="@item.Id">@item.Name</option>
+                            }
+                        }
+                    </select>
+                </div>
+            </div>
+            @if(Model.PatientAppointment != null){
+                <div id="WorkingDaysDiv" class="col-md-6">
+                    <div class="form-group">
+                        <label class="control-label">Doctor Working Day</label>
+                        <select id="WorkingDayId" class="col-sm-12 form-control MainObj" tabindex="-1" aria-hidden="true" required>
+                            <option value="">Working day</option>
+                            @foreach (var item in Model.PatientAppointment?.Doctor?.DoctorWorkingDays)
+                            {
+                                if (item.Id == Model.PatientAppointment.WorkingDayId)
+                                {
+                                   
+                                    <option selected value="@item.WorkingDay.Id">@item.WorkingDay.Name</option>
+                                }
+                                else
+                                {
+                                    <option value="@item.WorkingDay.Id">@item.WorkingDay.Name</option>
+                                    
+                                }
+
+                            }
+                        </select>
+
+                        
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div id = "WorkingDaysDiv" class="col-md-6" style="display:none">
+
+                </div>
+            }
+
+            <div  class="col-md-6">
+                <div class="form-group">
+                    <label for="exampleInputEmail1">Date</label>
+                    <input type="date" class="form-control MainObj" id="Date" min="@DateTime.Now.ToString("yyyy-MM-dd")" placeholder="date" value="@Model?.PatientAppointment?.Date.ToString("yyyy-MM-dd")">
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="form-group">
+                    @{
+                        string format = "HH:mm:ss";
+                        string dateValue = Model.PatientAppointment != null ? $"{Model.PatientAppointment.StartDate} - {Model.PatientAppointment.EndDate}" : "";
+                    }
+                    <label for="exampleInputEmail1">Appointment time</label>
+                    <input type="text" class="form-control" onchange="setStartDateAndEndDate(this)" id="DateRange" name="daterange" value="@dateValue" />
+                    
+                    <input type="text" id="StartDate" hidden class="MainObj" value="@Model?.PatientAppointment?.StartDate" />
+                    <input type="text" id="EndDate" hidden class="MainObj" value="@Model?.PatientAppointment?.EndDate" />
+                </div>
+            </div>
+
+        </div>
+        <div class="card-block">
+            <a class="btn btn-success right" id="Save" style="float: right;">Save</a>
+        </div>
+
+    </div>
+</div>
+
+
+
+<!-- End Table -->
+@section scripts {
+    <script src="~/js/CreatePatientAppointment.js" asp-append-version="true"></script>
+}
