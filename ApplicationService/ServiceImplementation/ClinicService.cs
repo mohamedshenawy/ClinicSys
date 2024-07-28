@@ -38,8 +38,8 @@ namespace ApplicationService.ServiceImplementation
             {
                 return 0;
             }
-            entityModel.Name = entity.Name;
-            entityModel.UpdatedDate = DateTime.Now;
+            //entityModel.Name = entity.Name;
+            //entityModel.UpdatedDate = DateTime.Now;
 
             _unitOfWork.ClinicRepo.Update(entityModel);
             var result = _unitOfWork.Commit();
@@ -49,7 +49,7 @@ namespace ApplicationService.ServiceImplementation
         public int Delete(int Id)
         {
             var model = _unitOfWork.ClinicRepo.GetWhere(e => e.Id == Id).SingleOrDefault();
-            model.IsDeleted = true;
+            //model.IsDeleted = true;
             _unitOfWork.ClinicRepo.Update(model);
             var result = _unitOfWork.Commit();
 

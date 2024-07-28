@@ -35,7 +35,7 @@ namespace ApplicationService.ServiceImplementation
             }
             entityModel.Name = entity.Name;
             entityModel.BirthDate = entity.BirthDate;
-            entityModel.UpdatedDate = DateTime.Now;
+            //entityModel.UpdatedDate = DateTime.Now;
 
             _unitOfWork.PatientRepo.Update(entityModel);
             var result = _unitOfWork.Commit();
@@ -45,7 +45,7 @@ namespace ApplicationService.ServiceImplementation
         public int Delete(int Id)
         {
             var model = _unitOfWork.PatientRepo.GetWhere(e => e.Id == Id).SingleOrDefault();
-            model.IsDeleted = true;
+           // model.IsDeleted = true;
             _unitOfWork.PatientRepo.Update(model);
             var result = _unitOfWork.Commit();
 

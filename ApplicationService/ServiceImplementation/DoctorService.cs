@@ -37,7 +37,7 @@ namespace ApplicationService.ServiceImplementation
             entityModel.StartDate = entity.StartDate;
             entityModel.EndDate = entity.EndDate;
             entityModel.ClinicId = entity.ClinicId;
-            entityModel.UpdatedDate = DateTime.Now;
+            //entityModel.UpdatedDate = DateTime.Now;
 
             _unitOfWork.DoctorRepo.Update(entityModel);
             var result = _unitOfWork.Commit();
@@ -47,7 +47,7 @@ namespace ApplicationService.ServiceImplementation
         public int Delete(int Id)
         {
             var model = _unitOfWork.DoctorRepo.GetWhere(e => e.Id == Id).SingleOrDefault();
-            model.IsDeleted = true;
+            //model.IsDeleted = true;
             _unitOfWork.DoctorRepo.Update(model);
             var result = _unitOfWork.Commit();
 

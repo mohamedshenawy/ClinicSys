@@ -5,8 +5,8 @@ namespace Domain.Entities
 {
     public abstract class BaseClass
     {
-        protected DateTime CreationDate { get; set; }
-        protected DateTime? UpdatedDate { get; set; }
-        protected bool IsDeleted { get; set; } = false;
+        public DateTime CreationDate { get; protected set; }
+        public DateTime? UpdatedDate { get; protected set; }
+        public bool IsDeleted { get; protected set; } = false;
     }
 }
