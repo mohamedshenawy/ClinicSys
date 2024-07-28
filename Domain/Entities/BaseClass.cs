@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Domain.Entities
 {
-    public class BaseClass
+    public abstract class BaseClass
     {
-        public DateTime CreationDate { get; set; }
-        public DateTime? UpdatedDate { get; set; }
-        public bool IsDeleted { get; set; } = false;
+        protected DateTime CreationDate { get; set; }
+        protected DateTime? UpdatedDate { get; set; }
+        protected bool IsDeleted { get; set; } = false;
     }
 }
